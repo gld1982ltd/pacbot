@@ -21,7 +21,8 @@
     "shelljs": "0.1.x"
   },
   "devDependencies": {
-    "nodeunit": ""
+    "nodeunit": "",
+    "jshint": ""
   },
   "scripts": {
     "test": "./test"
