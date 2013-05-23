@@ -2,9 +2,9 @@
 
 set -e
 
-jshint lib bin spec/tests
+node_modules/.bin/jshint lib bin spec/tests
 
 rm   -rf spec/out
 mkdir -p spec/out
 
-nodeunit spec/tests
+node_modules/.bin/nodeunit spec/tests
