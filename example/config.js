@@ -18,6 +18,11 @@ exports.config = {
         "css/1.css",
         "css/2.css"
       ]
+    },
+    tmpl: {
+      group3: [
+        "templates/1.tmpl"
+      ]
     }
 
   },
