@@ -9,8 +9,8 @@ exports.config = {
     js: {
       group1: [
         "js/a.js",
-        "js/b.js"
-      ]
+        "js/b.js",
+        "js/template.js"      ]
     },
 
     css: {
