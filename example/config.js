@@ -9,14 +9,19 @@ exports.config = {
     js: {
       group1: [
         "js/a.js",
-        "js/b.js"
-      ]
+        "js/b.js",
+        "js/template.js"      ]
     },
 
     css: {
       group2: [
         "css/1.css",
         "css/2.css"
+      ]
+    },
+    tmpl: {
+      group3: [
+        "templates/1.tmpl"
       ]
     }
 
