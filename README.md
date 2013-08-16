@@ -1,30 +1,10 @@
-# The Pacman Project
+# Pacman
 
----
-
-**This is very much a work in progress, and not ready for production.**
-
----
-
-Pacman is a fast static site generator,
-built for large sites with many files, written in node.js
-(about 500 lines of JS).
-
+Pacman is a fast static site generator, built primarily for large single-page webapps.
 While there are many static site generators, few are built to work with lots of files.
 The main problem is in development mode, where many static site generators regenerate all files
 when a single file changes. If you have a lot of files, this means waiting a few seconds
-before you can see your changes in the browser.
-
-Pacman has **no support for**:
-
-* Blogging
-* Feeds
-* Pagination
-* Listing pages
-* Markdown
-* Asset preprocessors
-
-Pacman **has support for**:
+before you can see your changes in the browser. Features:
 
 * Regenerating files on the fly
 * HTML microtemplates
@@ -35,9 +15,8 @@ Pacman **has support for**:
 
 Pacman has two distinct modes: dev mode and build mode.
 
-* **In dev mode**, all files are served on the fly, without recompilation.
-* **In build mode**, all files are processed and all assets are packed, producing a directory that can be uploaded
-to your server.
+* **In dev mode**, all files are served on the fly, without regenerating the entire site.
+* **In build mode**, all files are processed and all assets are packed into an uploadable dir.
 
 ## Install
 
