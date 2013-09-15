@@ -1,5 +1,5 @@
 var config = require("../../lib/config");
-var pacman = require("../../lib/pacman");
+var pacbot = require("../../lib/pacbot");
 var fss    = require("../../lib/fss");
 var _      = require("underscore")._;
 
@@ -21,7 +21,7 @@ exports.canIgnoreFilesInDev = function(test) {
   config.build = false;
   config.ignore_build = ["1.html"];
   config.ignore_dev = ["2.html"];
-  pacman.build();
+  pacbot.build();
   test.ok( fss.exists(f1));
   test.ok(!fss.exists(f2));
   test.done();
@@ -32,7 +32,7 @@ exports.canIgnoreFilesInBuild = function(test) {
   config.build = true;
   config.ignore_build = ["1.html"];
   config.ignore_dev = ["2.html"];
-  pacman.build();
+  pacbot.build();
   test.ok(!fss.exists(f1));
   test.ok( fss.exists(f2));
   test.done();
@@ -43,7 +43,7 @@ exports.canIgnoreNothing = function(test) {
   config.build = true;
   config.ignore_build = [];
   config.ignore_dev = [];
-  pacman.build();
+  pacbot.build();
   test.ok(fss.exists(f1));
   test.ok(fss.exists(f2));
   test.done();

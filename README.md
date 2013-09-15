@@ -1,6 +1,6 @@
-# Pacman
+# Pacbot
 
-Pacman is a fast static site generator, built primarily for large single-page webapps.
+Pacbot is a fast static site generator, built primarily for large single-page webapps.
 While there are many static site generators, few are built to work with lots of files.
 The main problem is in development mode, where many static site generators regenerate all files
 when a single file changes. If you have a lot of files, this means waiting a few seconds
@@ -13,26 +13,26 @@ before you can see your changes in the browser. Features:
 * Deploy via rsync
 * Staying out of your way
 
-Pacman has two distinct modes: dev mode and build mode.
+Pacbot has two distinct modes: dev mode and build mode.
 
 * **In dev mode**, all files are served on the fly, without regenerating the entire site.
 * **In build mode**, all files are processed and all assets are packed into an uploadable dir.
 
 ## Install
 
-To install pacman, use npm:
+To install pacbot, use npm:
 
 ```
-$ npm install pacman -g
+$ npm install pacbot -g
 ```
 
 ## Setup
 
-Pacman could be used in a directory with the following structure:
+Pacbot could be used in a directory with the following structure:
 
 ```
 mysite/
-    config.js        -- the pacman config file (more on this later)
+    config.js        -- the pacbot config file (more on this later)
     public/          -- the folder where the build-mode generated site is placed
     content/         -- the content for your site
         index.html   -- an index file for your site, along with any other file
@@ -40,7 +40,7 @@ mysite/
         _layouts/    -- a folder with all your layouts
 ```
 
-* Pacman will generate content from the `content` directory,
+* Pacbot will generate content from the `content` directory,
 * The resulting site will be placed in the `public` directory.
 * You can change the names of these folders from the command line, or in the `config.js` file.
 * Files or folders starting with `_` will not be processed into the `public` directory.
@@ -49,10 +49,10 @@ mysite/
 
 ## Usage
 
-Here is how to use Pacman from the command line:
+Here is how to use Pacbot from the command line:
 
 ```
-Usage: pacman [options]
+Usage: pacbot [options]
 
 Options:
 
@@ -74,47 +74,47 @@ Here are some common use cases:
 
 ```
 # Development mode: serve files directly from ./content
-$ pacman -d
+$ pacbot -d
 
 # Build mode: process all files and assets into ./public
-$ pacman -b
+$ pacbot -b
 
 # Sync: rsync target directory to your remote server
-$ pacman -s --remote user@example.com:/path/to/document/root/
+$ pacbot -s --remote user@example.com:/path/to/document/root/
 
 # Build and sync to different local folder
-$ pacman -b -s --remote relative/target/folder
+$ pacbot -b -s --remote relative/target/folder
 ```
 
 
 ## API
 
-You may also use pacman programmatically:
+You may also use pacbot programmatically:
 
 ```js
-var pacman = require("pacman");
+var pacbot = require("pacbot");
 
 // Set config flags
-pacman.config({
+pacbot.config({
   source: "relative/source/folder/name",
   target: "relative/target/folder/name",
   remote: "foo@example.com:/path/to/document/root/"
 });
 
 // Start dev mode
-pacman.dev();
+pacbot.dev();
 
 // Start build mode
-pacman.build();
+pacbot.build();
 
 // Sync target dir
-pacman.sync();
+pacbot.sync();
 ```
 
 
 ## Templates
 
-Pacman uses JS microtemplates from Underscore.js to parse HTML files.
+Pacbot uses JS microtemplates from Underscore.js to parse HTML files.
 For example, putting the following in your HTML file will output the current Unix timestamp:
 
 ```
@@ -195,7 +195,7 @@ To include your assets, use the `assets` helper, quite possibly in your layout f
 
 ## Config
 
-Pacman will look for a `config.js` file in the directory in which it is run.
+Pacbot will look for a `config.js` file in the directory in which it is run.
 You can override where to look for the config with the `-c` command line flag.
 The config is a valid node.js module. Here is an example:
 
