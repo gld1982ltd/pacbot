@@ -67,9 +67,10 @@ var templateData = function (locals) {
 helpers.partial = function (f, locals) {
     locals = locals || {};
     locals.templateType = 'partial';
-    var result = pacbot.process(path.join(config.appdir, f), locals);
+    var file = path.join(config.appdir, f);
+    var result = pacbot.process(file, locals);
     if (result) return result;
-    return fss.readFile(f);
+    return fss.readFile(file);
 };
 
 /*
