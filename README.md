@@ -4,19 +4,18 @@ Pacbot is a fast static site generator, built primarily for large single-page we
 While there are many static site generators, few are built to work with lots of files.
 The main problem is in development mode, where many static site generators regenerate all files
 when a single file changes. If you have a lot of files, this means waiting a few seconds
-before you can see your changes in the browser. Features:
+before you can see your changes in the browser. Pacbot has two distinct modes:
 
-* Regenerating files on the fly
+* **In dev mode**, all files are served on the fly, without regenerating the entire site.
+* **In build mode**, all files are processed and all assets are packed into an uploadable dir.
+
+Other features:
+
 * HTML microtemplates
 * Layouts and partials
 * Asset packaging
 * Deploy via rsync
 * Staying out of your way
-
-Pacbot has two distinct modes: dev mode and build mode.
-
-* **In dev mode**, all files are served on the fly, without regenerating the entire site.
-* **In build mode**, all files are processed and all assets are packed into an uploadable dir.
 
 ## Install
 
@@ -32,7 +31,7 @@ Pacbot could be used in a directory with the following structure:
 
 ```
 mysite/
-    config.js        -- the pacbot config file (more on this later)
+    pacbot.js        -- the pacbot config file (more on this later)
     public/          -- the folder where the build-mode generated site is placed
     content/         -- the content for your site
         index.html   -- an index file for your site, along with any other file
@@ -42,7 +41,7 @@ mysite/
 
 * Pacbot will generate content from the `content` directory,
 * The resulting site will be placed in the `public` directory.
-* You can change the names of these folders from the command line, or in the `config.js` file.
+* You can change the names of these folders from the command line, or in the `pacbot.js` file.
 * Files or folders starting with `_` will not be processed into the `public` directory.
 * Other than that, the names of the folders are not important in any way.
 
@@ -64,7 +63,7 @@ Options:
   -s, --sync       sync target dir to remote server or local dir
 
   --port   <port>  change dev server port    (default 3000)
-  --config <path>  change config file        (default ./config.js)
+  --config <path>  change config file        (default ./pacbot.js)
   --source <path>  change source directory   (default ./content)
   --target <path>  change target directory   (default ./public)
   --remote <path>  set remote server address (no default)
@@ -158,7 +157,7 @@ In your layout, you have the variable `content`, which denotes where the main co
 ```
 
 You can use different layouts for different files. This is specified
-in your `config.js` file (explained at the end of this readme):
+in your `pacbot.js` file (explained at the end of this readme):
 
 ```js
 exports.config = {
@@ -175,7 +174,7 @@ substring of the file path to match, and the value points to the layout file.
 ## Assets
 
 Assets (for now, just JS and CSS files) are served as they are in dev mode, and concatenated and minified in build mode.
-Which assets belong in which group is specified in the `config.js` file (see the next section).
+Which assets belong in which group is specified in the `pacbot.js` file (see the next section).
 To include your assets, use the `assets` helper, quite possibly in your layout file:
 
 ```
@@ -195,7 +194,7 @@ To include your assets, use the `assets` helper, quite possibly in your layout f
 
 ## Config
 
-Pacbot will look for a `config.js` file in the directory in which it is run.
+Pacbot will look for a `pacbot.js` file in the directory in which it is run.
 You can override where to look for the config with the `-c` command line flag.
 The config is a valid node.js module. Here is an example:
 

@@ -10,7 +10,8 @@ exports.config = {
       group1: [
         "js/a.js",
         "js/b.js",
-        "js/template.js"      ]
+        "js/template.js"      
+      ]
     },
 
     css: {
@@ -19,6 +20,7 @@ exports.config = {
         "css/2.css"
       ]
     },
+    
     tmpl: {
       group3: [
         "templates/1.tmpl"
