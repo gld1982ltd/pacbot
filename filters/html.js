@@ -1,10 +1,11 @@
-var _        = require("underscore"),
-    path     = require("path"),
-    config   = require("../lib/config"),
-    pacbot   = require("../lib/pacbot"),
-    fss      = require("../lib/fss"),
-    log      = require("../lib/log"),
-    assets   = require("../lib/assets");
+var _ = require("underscore"),
+    path = require("path"),
+    config = require("../lib/config"),
+    pacbot = require("../lib/pacbot"),
+    fss = require("../lib/fss"),
+    log = require("../lib/log"),
+    assets = require("../lib/assets"),
+    use = require("../lib/use");
 
 /*
  * A map of current template variables.
@@ -102,12 +103,17 @@ helpers.redirect = function(relative_target) {
   return '<meta http-equiv="refresh" content="0; url=' + relative_target + '">';
 };
 
+/*
+ * Mime type.
+ */
+use('mime', 'html', function() {
+    return 'text/html';
+});
 
 /*
- * The function to process any HTML file,
- * exposed by this plugin.
+ * Compile.
  */
-exports.process = function(f, data, locals) {
+use('compile', 'html', function(f, data, locals) {
   var partial = locals.templateType === "partial";
   var ignored = !config.needsProcessing(f);
   var tagged  = data.indexOf("<%") !== -1;
@@ -125,4 +131,4 @@ exports.process = function(f, data, locals) {
     return processLayout(f, data);
   }
   return result;
-};
+});

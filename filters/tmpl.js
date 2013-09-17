@@ -7,7 +7,7 @@ var _ = require("underscore"),
  * Mime type.
  */
 use('mime', 'tmpl', function() {
-    return 'application/javascript';
+    return 'text/javascript';
 });
 
 /*
