@@ -9,8 +9,9 @@ exports.setUp = function(callback) {
 };
 
 var js = function(path) {
-  return "<script src='" + path;
+  return '<script src="' + path;
 };
+
 var assertSubstr = function(test, supstr, substr) {
   test.ok(supstr.indexOf(substr) > -1);
 };
@@ -20,7 +21,7 @@ exports.canCompileAssetTemplates = function(test) {
     appdir: "spec/cases/tmpl",
     pubdir: "spec/out/tmpl",
     packed: "assets",
-    config: "spec/cases/tmpl/config.js"    
+    config: "spec/cases/tmpl/config.js"
   });
   pacbot.build(function() {
     test.ok(fss.exists("spec/out/tmpl/index.html"));

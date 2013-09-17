@@ -5,11 +5,11 @@ var fss    = require("../../lib/fss");
 var _      = require("underscore")._;
 
 var css = function(path) {
-  return "<link rel='stylesheet' href='" + path;
+  return '<link rel="stylesheet" href="' + path;
 };
 
 var js = function(path) {
-  return "<script src='" + path;
+  return '<script src="' + path;
 };
 
 var assertSubstr = function(test, supstr, substr) {
