@@ -7,7 +7,7 @@ var marked = require('marked'),
  * Mime type.
  */
 use('mime', 'md', function () {
-    return 'text/plain';
+    return 'text/html';
 });
 
 /*
