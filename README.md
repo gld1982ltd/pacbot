@@ -4,19 +4,18 @@ Pacbot is a fast static site generator, built primarily for large single-page we
 While there are many static site generators, few are built to work with lots of files.
 The main problem is in development mode, where many static site generators regenerate all files
 when a single file changes. If you have a lot of files, this means waiting a few seconds
-before you can see your changes in the browser. Features:
+before you can see your changes in the browser. Pacbot has two distinct modes:
 
-* Regenerating files on the fly
+* **In dev mode**, all files are served on the fly, without regenerating the entire site.
+* **In build mode**, all files are processed and all assets are packed into an uploadable dir.
+
+Other features:
+
 * HTML microtemplates
 * Layouts and partials
 * Asset packaging
 * Deploy via rsync
 * Staying out of your way
-
-Pacbot has two distinct modes: dev mode and build mode.
-
-* **In dev mode**, all files are served on the fly, without regenerating the entire site.
-* **In build mode**, all files are processed and all assets are packed into an uploadable dir.
 
 ## Install
 
