@@ -1,8 +1,3 @@
-/*
- * Middleware matching .tmpl files for
- * precompiling underscore templates.
- */
-
 var _ = require("underscore"),
     uglifyJS = require("uglify-js"),
     fss = require("../lib/fss"),

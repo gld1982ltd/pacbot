@@ -1,8 +1,3 @@
-/*
- * Middleware matching .css files for
- * specific CSS functionality.
- */
-
 var _ = require("underscore"),
     cleanCSS = require("clean-css"),
     fss = require("../lib/fss"),

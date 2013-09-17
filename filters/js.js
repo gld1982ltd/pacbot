@@ -1,8 +1,3 @@
-/*
- * Middleware matching .js files for
- * specific JS files functionality.
- */
-
 var _ = require("underscore"),
     uglifyJS = require("uglify-js"),
     fss = require("../lib/fss"),
