@@ -21,24 +21,24 @@ var helpers = {};
  * Process the current layout file.
  */
 var processLayout = function (f, content) {
-  var path = config.getLayout(f);
-  if (!path) return content;
-  if (!fss.exists(path)) return content;
-  return compile(f, fss.readFile(path),
-    _.extend(templateData({}), { content: content }));
+    var path = config.getLayout(f);
+    if (!path) return content;
+    if (!fss.exists(path)) return content;
+    return compile(f, fss.readFile(path),
+        _.extend(templateData({}), { content: content }));
 };
 
 /*
  * Compile a template with data.
  */
 var compile = function (f, data, context) {
-  try {
-    return _.template(data)(context);
-  } catch(e) {
-    log('error', 'could not parse template file', f);
-    log('error', 'original error:');
-    throw(e);
-  }
+    try {
+        return _.template(data)(context);
+    } catch(e) {
+        log('error', 'could not parse template file', f);
+        log('error', 'original error:');
+        throw(e);
+    }
 };
 
 /*
@@ -46,11 +46,11 @@ var compile = function (f, data, context) {
  * they should not carry over between pages.
  */
 var reset = function () {
-  if (config.filters && config.filters.html && config.filters.html.vars) {
-    templateVars = _.clone(config.filters.html.vars);
-  } else {
-    templateVars = {};
-  }
+    if (config.filters && config.filters.html && config.filters.html.vars) {
+        templateVars = _.clone(config.filters.html.vars);
+    } else {
+        templateVars = {};
+    }
 };
 
 /*
@@ -58,18 +58,18 @@ var reset = function () {
  * The global config is also available to all templates.
  */
 var templateData = function (locals) {
-  return _.extend(helpers, config.helpers, locals, { config: config });
+    return _.extend(helpers, config.helpers, locals, { config: config });
 };
 
 /*
  * Helper to render a partial.
  */
 helpers.partial = function (f, locals) {
-  locals = locals || {};
-  locals.templateType = 'partial';
-  var result = pacbot.process(path.join(config.appdir, f), locals);
-  if (result) return result;
-  return fss.readFile(f);
+    locals = locals || {};
+    locals.templateType = 'partial';
+    var result = pacbot.process(path.join(config.appdir, f), locals);
+    if (result) return result;
+    return fss.readFile(f);
 };
 
 /*
@@ -77,15 +77,15 @@ helpers.partial = function (f, locals) {
  * with an optional default value.
  */
 helpers.get = function (key, defaultValue) {
-  return key in templateVars ? templateVars[key] : defaultValue;
+    return key in templateVars ? templateVars[key] : defaultValue;
 };
 
 /*
  * Helper to set a template variable.
  */
 helpers.set = function (key, value) {
-  templateVars[key] = value;
-  return value;
+    templateVars[key] = value;
+    return value;
 };
 
 /*
@@ -93,14 +93,14 @@ helpers.set = function (key, value) {
  * group for the current mode.
  */
 helpers.assets = function (type, group) {
-  return assets(type, group);
+    return assets(type, group);
 };
 
 /*
  * Helper for redirecting from one page to another.
  */
 helpers.redirect = function (relative_target) {
-  return '<meta http-equiv="refresh" content="0; url=' + relative_target + '">';
+    return '<meta http-equiv="refresh" content="0; url=' + relative_target + '">';
 };
 
 /*
@@ -114,21 +114,23 @@ use('mime', 'html', function () {
  * Compile.
  */
 use('compile', 'html', function (f, data, locals) {
-  var partial = locals.templateType === 'partial';
-  var ignored = !config.needsProcessing(f);
-  var tagged  = data.indexOf('<%') !== -1;
+    var partial = locals.templateType === 'partial';
+    var ignored = !config.needsProcessing(f);
+    var tagged  = data.indexOf('<%') !== -1;
 
-  if (!partial) {
-    reset();
-  }
+    if (!partial) {
+        reset();
+    }
 
-  if (!ignored && tagged) {
-    data = compile(f, data, templateData(locals));
-  }
-  if (partial || ignored) {
-    return data;
-  } else {
-    return processLayout(f, data);
-  }
-  return result;
+    if (!ignored && tagged) {
+        data = compile(f, data, templateData(locals));
+    }
+
+    if (partial || ignored) {
+        return data;
+    } else {
+        return processLayout(f, data);
+    }
+
+    return result;
 });
