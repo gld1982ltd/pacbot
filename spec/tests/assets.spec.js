@@ -1,27 +1,26 @@
-var fs     = require("fs");
-var config = require("../../lib/config");
-var pacbot = require("../../lib/pacbot");
-var fss    = require("../../lib/fss");
-var _      = require("underscore")._;
+var fs = require('fs');
+var config = require('../../lib/config');
+var pacbot = require('../../lib/pacbot');
+var fss = require('../../lib/fss');
 
-var css = function(path) {
+var css = function (path) {
   return '<link rel="stylesheet" href="' + path;
 };
 
-var js = function(path) {
+var js = function (path) {
   return '<script src="' + path;
 };
 
-var assertSubstr = function(test, supstr, substr) {
+var assertSubstr = function (test, supstr, substr) {
   test.ok(supstr.indexOf(substr) === 0);
 };
 
-exports.setUp = function(callback) {
+exports.setUp = function (callback) {
   config.init({
-    appdir: "spec/cases/assets",
-    pubdir: "spec/out/assets",
-    packed: "assets",
-    config: "spec/cases/assets/assets1.js",
+    appdir: 'spec/cases/assets',
+    pubdir: 'spec/out/assets',
+    packed: 'assets',
+    config: 'spec/cases/assets/assets1.js',
     layout: false,
     ignore_processing: []
   });
@@ -29,64 +28,64 @@ exports.setUp = function(callback) {
   callback();
 };
 
-exports.canGenerateDevAssets = function(test) {
+exports.canGenerateDevAssets = function (test) {
   config.dev   = true;
   config.build = false;
-  pacbot.build(function() {
-    assertSubstr(test, fss.readFile("spec/out/assets/css.html"), css("/css/1.css"));
-    assertSubstr(test, fss.readFile("spec/out/assets/js_helper.html"),  js("/js_helper/1.js"));
+  pacbot.build(function () {
+    assertSubstr(test, fss.readFile('spec/out/assets/css.html'), css('/css/1.css'));
+    assertSubstr(test, fss.readFile('spec/out/assets/js_helper.html'),  js('/js_helper/1.js'));
     test.done();
   });
 };
 
-exports.canGenerateBuildAssets = function(test) {
+exports.canGenerateBuildAssets = function (test) {
   config.dev   = false;
   config.build = true;
-  pacbot.build(function() {
-    assertSubstr(test, fss.readFile("spec/out/assets/css.html"), css("/assets/all.css"));
-    assertSubstr(test, fss.readFile("spec/out/assets/js_helper.html"),  js("/assets/helper.js"));
-    test.equal(fss.readFile("spec/out/assets/assets/all.css"), "*{z-index:1}");
-    test.equal(fss.readFile("spec/out/assets/assets/helper.js"),  "var a=1;");
+  pacbot.build(function () {
+    assertSubstr(test, fss.readFile('spec/out/assets/css.html'), css('/assets/all.css'));
+    assertSubstr(test, fss.readFile('spec/out/assets/js_helper.html'),  js('/assets/helper.js'));
+    test.equal(fss.readFile('spec/out/assets/assets/all.css'), '*{z-index:1}');
+    test.equal(fss.readFile('spec/out/assets/assets/helper.js'),  'var a=1;');
     test.done();
   });
 };
 
-exports.canGenerateIgnoredAssets = function(test) {
+exports.canGenerateIgnoredAssets = function (test) {
   config.dev   = false;
   config.build = true;
-  config.ignore_processing = ["templates/", "t2.html"];
-  pacbot.build(function() {
-    test.equal(fss.readFile("spec/out/assets/templates/t1.html"), '<%= render("foo", "foo") %>');
-    test.equal(fss.readFile("spec/out/assets/templates/t2.html"), '<%= render("bar", "bar") %>');
+  config.ignore_processing = ['templates/', 't2.html'];
+  pacbot.build(function () {
+    test.equal(fss.readFile('spec/out/assets/templates/t1.html'), '<%= render("foo", "foo") %>');
+    test.equal(fss.readFile('spec/out/assets/templates/t2.html'), '<%= render("bar", "bar") %>');
     test.done();
   });
 };
 
-exports.canProcessEmptyAssetLists = function(test) {
+exports.canProcessEmptyAssetLists = function (test) {
   config.dev   = false;
   config.build = true;
-  pacbot.build(function() {
-    test.ok(!fs.existsSync("spec/out/assets/assets/js_empty.js"));
+  pacbot.build(function () {
+    test.ok(!fs.existsSync('spec/out/assets/assets/js_empty.js'));
     test.done();
   });
 };
 
-exports.canIgnoreDuplicateAssets = function(test) {
+exports.canIgnoreDuplicateAssets = function (test) {
   config.dev   = false;
   config.build = true;
-  pacbot.build(function() {
-    assertSubstr(test, fss.readFile("spec/out/assets/js_duplicates.html"), js("/assets/duplicates.js"));
-    test.equal(fss.readFile("spec/out/assets/assets/duplicates.js"), "var a=1;");
+  pacbot.build(function () {
+    assertSubstr(test, fss.readFile('spec/out/assets/js_duplicates.html'), js('/assets/duplicates.js'));
+    test.equal(fss.readFile('spec/out/assets/assets/duplicates.js'), 'var a=1;');
     test.done();
   });
 };
 
-exports.canIgnoreFilesWithWrongExtension = function(test) {
+exports.canIgnoreFilesWithWrongExtension = function (test) {
   config.dev   = false;
   config.build = true;
-  pacbot.build(function() {
-    assertSubstr(test, fss.readFile("spec/out/assets/js_filetype.html"), js("/assets/filetype.js"));
-    test.equal(fss.readFile("spec/out/assets/assets/filetype.js"), "function f(){}");
+  pacbot.build(function () {
+    assertSubstr(test, fss.readFile('spec/out/assets/js_filetype.html'), js('/assets/filetype.js'));
+    test.equal(fss.readFile('spec/out/assets/assets/filetype.js'), 'function f(){}');
     test.done();
   });
 };

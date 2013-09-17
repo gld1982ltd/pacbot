@@ -1,38 +1,37 @@
-var config = require("../../lib/config");
-var pacbot = require("../../lib/pacbot");
-var fss    = require("../../lib/fss");
-var _      = require("underscore")._;
+var config = require('../../lib/config');
+var pacbot = require('../../lib/pacbot');
+var fss = require('../../lib/fss');
 
-exports.setUp = function(callback) {
+exports.setUp = function (callback) {
   config.init({
-    appdir: "spec/cases/html",
-    pubdir: "spec/out/html",
+    appdir: 'spec/cases/html',
+    pubdir: 'spec/out/html',
     layout: false
   });
   fss.resetDir(config.pubdir);
   callback();
 };
 
-var f1 = "spec/out/html/1.html";
-var f2 = "spec/out/html/2.html";
-var f3 = "spec/out/html/.foo.html";
+var f1 = 'spec/out/html/1.html';
+var f2 = 'spec/out/html/2.html';
+var f3 = 'spec/out/html/.foo.html';
 
-exports.canRegenOneFile = function(test) {
-  pacbot.generate("1.html");
-  test.equal("1.html", fss.readFile(f1));
-  pacbot.generate("2.html");
-  test.equal("2.html", fss.readFile(f2));
+exports.canRegenOneFile = function (test) {
+  pacbot.generate('1.html');
+  test.equal('1.html', fss.readFile(f1));
+  pacbot.generate('2.html');
+  test.equal('2.html', fss.readFile(f2));
   test.done();
 };
 
-exports.canRegenManyFiles = function(test) {
+exports.canRegenManyFiles = function (test) {
   pacbot.build();
-  test.equal("1.html", fss.readFile(f1));
-  test.equal("2.html", fss.readFile(f2));
+  test.equal('1.html', fss.readFile(f1));
+  test.equal('2.html', fss.readFile(f2));
   test.done();
 };
 
-exports.canIgnoreDotfiles = function(test) {
+exports.canIgnoreDotfiles = function (test) {
   pacbot.build();
   test.ok( fss.exists(f1));
   test.ok( fss.exists(f2));

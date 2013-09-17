@@ -1,23 +1,22 @@
-var config = require("../../lib/config");
-var pacbot = require("../../lib/pacbot");
-var fss    = require("../../lib/fss");
-var _      = require("underscore")._;
+var config = require('../../lib/config');
+var pacbot = require('../../lib/pacbot');
+var fss = require('../../lib/fss');
 
-exports.setUp = function(callback) {
+exports.setUp = function (callback) {
   fss.resetDir(config.pubdir);
   callback();
 };
 
-var testContent = function(test, expected, path) {
+var testContent = function (test, expected, path) {
   pacbot.build();
-  test.equal(fss.readFile(path || "spec/out/blank/index.html"), expected);
+  test.equal(fss.readFile(path || 'spec/out/blank/index.html'), expected);
 };
 
-exports.canBuildBlankProject = function(test) {
+exports.canBuildBlankProject = function (test) {
   config.init({
-    appdir: "spec/cases/blank",
-    pubdir: "spec/out/blank"
+    appdir: 'spec/cases/blank',
+    pubdir: 'spec/out/blank'
   });
-  testContent(test, "hello");
+  testContent(test, 'hello');
   test.done();
 };

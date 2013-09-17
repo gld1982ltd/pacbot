@@ -1,4 +1,9 @@
 {
     "node" : true,
-    "strict": false
+    "strict": false,
+    "quotmark": "single",
+    "undef": true,
+    "unused": true,
+    "indent": 2,
+    "eqeqeq": true
 }

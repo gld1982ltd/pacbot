@@ -1,44 +1,43 @@
-var config = require("../../lib/config");
-var pacbot = require("../../lib/pacbot");
-var fss    = require("../../lib/fss");
-var _      = require("underscore")._;
+var config = require('../../lib/config');
+var pacbot = require('../../lib/pacbot');
+var fss = require('../../lib/fss');
 
-exports.setUp = function(callback) {
+exports.setUp = function (callback) {
   config.init({
-    appdir: "spec/cases/html",
-    pubdir: "spec/out/html",
+    appdir: 'spec/cases/html',
+    pubdir: 'spec/out/html',
     layout: false
   });
   fss.resetDir(config.pubdir);
   callback();
 };
 
-var f1 = "spec/out/html/1.html";
-var f2 = "spec/out/html/2.html";
+var f1 = 'spec/out/html/1.html';
+var f2 = 'spec/out/html/2.html';
 
-exports.canIgnoreFilesInDev = function(test) {
+exports.canIgnoreFilesInDev = function (test) {
   config.dev = true;
   config.build = false;
-  config.ignore_build = ["1.html"];
-  config.ignore_dev = ["2.html"];
+  config.ignore_build = ['1.html'];
+  config.ignore_dev = ['2.html'];
   pacbot.build();
   test.ok( fss.exists(f1));
   test.ok(!fss.exists(f2));
   test.done();
 };
 
-exports.canIgnoreFilesInBuild = function(test) {
+exports.canIgnoreFilesInBuild = function (test) {
   config.dev = false;
   config.build = true;
-  config.ignore_build = ["1.html"];
-  config.ignore_dev = ["2.html"];
+  config.ignore_build = ['1.html'];
+  config.ignore_dev = ['2.html'];
   pacbot.build();
   test.ok(!fss.exists(f1));
   test.ok( fss.exists(f2));
   test.done();
 };
 
-exports.canIgnoreNothing = function(test) {
+exports.canIgnoreNothing = function (test) {
   config.dev = false;
   config.build = true;
   config.ignore_build = [];

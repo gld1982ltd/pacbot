@@ -217,7 +217,7 @@ exports.config = {
   },
 
   helpers: {
-    hello: function() {
+    hello: function () {
       return "hello!";
     }
   }

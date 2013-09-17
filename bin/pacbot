@@ -25,7 +25,7 @@ program
 /*
  * If no options are given, show the help prompt.
  */
-if(!program.dev && !program.build && !program.sync) {
+if (!program.dev && !program.build && !program.sync) {
   program.help();
 }
 
@@ -39,6 +39,6 @@ var config = pacbot.config(_.extend({ silent: false }, _.pick(program, [
 /*
  * Decide what to do.
  */
-if(config.build) pacbot.build();
-if(config.sync)  pacbot.sync();
-if(config.dev)   pacbot.dev();
+if (config.build) pacbot.build();
+if (config.sync)  pacbot.sync();
+if (config.dev)   pacbot.dev();
