@@ -20,6 +20,7 @@ exports.config = {
         "css/2.css"
       ]
     },
+    
     tmpl: {
       group3: [
         "templates/1.tmpl"
