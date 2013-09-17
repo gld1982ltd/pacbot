@@ -1,5 +1,5 @@
 var config = require("../../lib/config");
-var pacman = require("../../lib/pacman");
+var pacbot = require("../../lib/pacbot");
 var fss    = require("../../lib/fss");
 var sync   = require("../../lib/sync");
 
@@ -15,7 +15,7 @@ exports.setUp = function(callback) {
 };
 
 exports.canDeployOneFile = function(test) {
-  pacman.build();
+  pacbot.build();
   sync.perform(function() {
     test.equal("1", fss.readFile("spec/out/deploy/remote/1.html"));
     test.done();

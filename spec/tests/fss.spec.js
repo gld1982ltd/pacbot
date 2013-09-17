@@ -2,7 +2,7 @@ var _      = require("underscore")._;
 var fs     = require("fs");
 var config = require("../../lib/config");
 var fss    = require("../../lib/fss");
-var pacman = require("../../lib/pacman");
+var pacbot = require("../../lib/pacbot");
 
 exports.canIngoreUnprocessableFiles = function(test) {
   config.init({
@@ -27,7 +27,7 @@ exports.canCopyZipFiles = function(test) {
   });
 
   fss.resetDir(config.pubdir);
-  pacman.build();
+  pacbot.build();
 
   test.ok(fs.existsSync("spec/out/filetypes/foo.html"));
   test.ok(fs.lstatSync("spec/out/filetypes/Archive.zip").isFile());

@@ -1,5 +1,5 @@
 var config = require("../../lib/config");
-var pacman = require("../../lib/pacman");
+var pacbot = require("../../lib/pacbot");
 var fss    = require("../../lib/fss");
 var _      = require("underscore")._;
 
@@ -22,7 +22,7 @@ exports.canCompileAssetTemplates = function(test) {
     packed: "assets",
     config: "spec/cases/tmpl/config.js"    
   });
-  pacman.build(function() {
+  pacbot.build(function() {
     test.ok(fss.exists("spec/out/tmpl/index.html"));
     assertSubstr(test, fss.readFile("spec/out/tmpl/index.html"),  js("/assets/common.tmpl"));
     assertSubstr(test, fss.readFile("spec/out/tmpl/assets/common.tmpl"),  'window.templates["assets/templates/1.tmpl"]');
