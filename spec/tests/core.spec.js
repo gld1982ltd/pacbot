@@ -17,9 +17,9 @@ var f2 = 'spec/out/html/2.html';
 var f3 = 'spec/out/html/.foo.html';
 
 exports.canRegenOneFile = function (test) {
-    pacbot.generate('1.html');
+    pacbot.copy('1.html');
     test.equal('1.html', fss.readFile(f1));
-    pacbot.generate('2.html');
+    pacbot.copy('2.html');
     test.equal('2.html', fss.readFile(f2));
     test.done();
 };

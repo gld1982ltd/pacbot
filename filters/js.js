@@ -1,25 +1,25 @@
 var _ = require('underscore'),
     uglifyJS = require('uglify-js'),
     fss = require('../lib/fss'),
-    use = require('../lib/use');
+    filter = require('../lib/filter');
 
 /*
  * Mime type.
  */
-use('mime', 'js', function () {
+filter('mime', 'js', function () {
     return 'text/javascript';
 });
 
 /*
  * HTML tag.
  */
-use('tag', 'js', function (path) {
+filter('tag', 'js', function (path) {
     return '<script src="' + path + '"></script>';
 });
 
 /*
  * Minify.
  */
-use('pack', 'js', function (files) {
+filter('pack', 'js', function (files) {
     return uglifyJS.minify(fss.readAllFiles(files), { fromString: true }).code;
 });

@@ -1,19 +1,19 @@
 var marked = require('marked'),
     config = require('../lib/config'),
     fss = require('../lib/fss'),
-    use = require('../lib/use');
+    filter = require('../lib/filter');
 
 /*
  * Mime type.
  */
-use('mime', 'md', function () {
+filter('mime', 'md', function () {
     return 'text/html';
 });
 
 /*
  * Compile.
  */
-use('compile', 'md', function (file) {
+filter('compile', 'md', function (file) {
     if (config.marked) marked.setOptions(config.marked);
     return marked(fss.readFile(file));
 });
@@ -21,6 +21,6 @@ use('compile', 'md', function (file) {
 /*
  * Target file name.
  */
-use('target', 'md', function (file) {
+filter('target', 'md', function (file) {
     return file.replace(/\.md$/, '.html');
 });

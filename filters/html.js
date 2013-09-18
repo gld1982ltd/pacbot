@@ -5,7 +5,7 @@ var _ = require('underscore'),
     fss = require('../lib/fss'),
     log = require('../lib/log'),
     assets = require('../lib/assets'),
-    use = require('../lib/use');
+    filter = require('../lib/filter');
 
 /*
  * A map of current template variables.
@@ -68,7 +68,7 @@ helpers.partial = function (f, locals) {
     locals = locals || {};
     locals.templateType = 'partial';
     var file = path.join(config.appdir, f);
-    var result = pacbot.process(file, locals);
+    var result = pacbot.compile(file, locals);
     if (result) return result;
     return fss.readFile(file);
 };
@@ -107,14 +107,14 @@ helpers.redirect = function (relative_target) {
 /*
  * Mime type.
  */
-use('mime', 'html', function () {
+filter('mime', 'html', function () {
     return 'text/html';
 });
 
 /*
  * Compile.
  */
-use('compile', 'html', function (f, data, locals) {
+filter('compile', 'html', function (f, data, locals) {
     var partial = locals.templateType === 'partial';
     var ignored = !config.needsProcessing(f);
     var tagged  = data.indexOf('<%') !== -1;
