@@ -6,20 +6,20 @@ var _ = require('underscore'),
 /*
  * Mime type.
  */
-filter('mime', 'js', function () {
+filter.set('mime', 'js', function () {
     return 'text/javascript';
 });
 
 /*
  * HTML tag.
  */
-filter('tag', 'js', function (path) {
+filter.set('tag', 'js', function (path) {
     return '<script src="' + path + '"></script>';
 });
 
 /*
  * Minify.
  */
-filter('pack', 'js', function (files) {
+filter.set('pack', 'js', function (files) {
     return uglifyJS.minify(fss.readAllFiles(files), { fromString: true }).code;
 });

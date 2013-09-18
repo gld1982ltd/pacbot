@@ -6,20 +6,20 @@ var _ = require('underscore'),
 /*
  * Mime type.
  */
-filter('mime', 'css', function () {
+filter.set('mime', 'css', function () {
     return 'text/css';
 });
 
 /*
  * HTML tag.
  */
-filter('tag', 'css', function (path) {
+filter.set('tag', 'css', function (path) {
     return '<link rel="stylesheet" href="' + path + '">';
 });
 
 /*
  * Minify.
  */
-filter('pack', 'css', function (files) {
+filter.set('pack', 'css', function (files) {
     return cleanCSS.process(fss.readAllFiles(files));
 });

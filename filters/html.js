@@ -107,14 +107,14 @@ helpers.redirect = function (relative_target) {
 /*
  * Mime type.
  */
-filter('mime', 'html', function () {
+filter.set('mime', 'html', function () {
     return 'text/html';
 });
 
 /*
  * Compile.
  */
-filter('compile', 'html', function (f, data, locals) {
+filter.set('compile', 'html', function (f, data, locals) {
     var partial = locals.templateType === 'partial';
     var ignored = !config.needsProcessing(f);
     var tagged  = data.indexOf('<%') !== -1;

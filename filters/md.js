@@ -6,14 +6,14 @@ var marked = require('marked'),
 /*
  * Mime type.
  */
-filter('mime', 'md', function () {
+filter.set('mime', 'md', function () {
     return 'text/html';
 });
 
 /*
  * Compile.
  */
-filter('compile', 'md', function (file) {
+filter.set('compile', 'md', function (file) {
     if (config.marked) marked.setOptions(config.marked);
     return marked(fss.readFile(file));
 });
@@ -21,6 +21,6 @@ filter('compile', 'md', function (file) {
 /*
  * Target file name.
  */
-filter('target', 'md', function (file) {
+filter.set('target', 'md', function (file) {
     return file.replace(/\.md$/, '.html');
 });
