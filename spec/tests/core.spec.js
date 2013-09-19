@@ -1,9 +1,8 @@
-var config = require('../../lib/config');
 var pacbot = require('../../lib/pacbot');
 var fss = require('../../lib/fss');
 
 exports.setUp = function (callback) {
-    config.init({
+    var config = pacbot.config({
         appdir: 'spec/cases/html',
         pubdir: 'spec/out/html',
         layout: false

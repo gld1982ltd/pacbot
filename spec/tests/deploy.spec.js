@@ -1,10 +1,9 @@
-var config = require('../../lib/config');
 var pacbot = require('../../lib/pacbot');
 var fss = require('../../lib/fss');
 var sync = require('../../lib/sync');
 
 exports.setUp = function (callback) {
-    config.init({
+    pacbot.config({
         sync:   true,
         appdir: 'spec/cases/deploy/content',
         pubdir: 'spec/out/deploy/public',

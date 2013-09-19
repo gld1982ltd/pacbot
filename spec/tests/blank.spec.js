@@ -1,9 +1,7 @@
-var config = require('../../lib/config');
 var pacbot = require('../../lib/pacbot');
 var fss = require('../../lib/fss');
 
 exports.setUp = function (callback) {
-    fss.resetDir(config.pubdir);
     callback();
 };
 
@@ -13,7 +11,7 @@ var testContent = function (test, expected, path) {
 };
 
 exports.canBuildBlankProject = function (test) {
-    config.init({
+    pacbot.config({
         appdir: 'spec/cases/blank',
         pubdir: 'spec/out/blank'
     });

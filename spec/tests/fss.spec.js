@@ -1,10 +1,9 @@
 var fs = require('fs');
-var config = require('../../lib/config');
 var fss = require('../../lib/fss');
 var pacbot = require('../../lib/pacbot');
 
 exports.canIngoreUnprocessableFiles = function (test) {
-    config.init({
+    var config = pacbot.config({
         appdir: 'spec/cases/filetypes'
     });
     fss.resetDir(config.pubdir);
@@ -16,7 +15,7 @@ exports.canIngoreUnprocessableFiles = function (test) {
 };
 
 exports.canCopyZipFiles = function (test) {
-    config.init({
+    var config = pacbot.config({
         appdir: 'spec/cases/filetypes',
         pubdir: 'spec/out/filetypes',
         config: false,

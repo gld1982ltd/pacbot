@@ -32,7 +32,7 @@ if (!program.dev && !program.build && !program.sync) {
 /*
  * Override config with command line flags.
  */
-var config = pacbot.config(_.extend({ silent: false }, _.pick(program, [
+var config = pacbot.init(_.extend({ silent: false }, _.pick(program, [
     'dev', 'build', 'sync', 'port', 'config', 'source', 'target', 'remote', 'silent'
 ])));
 
