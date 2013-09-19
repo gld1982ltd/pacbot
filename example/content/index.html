@@ -1,5 +1,9 @@
-<% set("title", "Custom title") %> 2 <%= partial("/_partials/part1.html") %> 6
+<p class="example">
+    This is an example site. It renders the readme file
+    as a partial (although you would normally have the
+    partial file inside the content directory). It also
+    has a little JS and CSS, just to demonstrate how
+    assets can be used.
+</p>
 
-<img src="/images/circle.png">
-
-
+<%= partial('../../README.md') %>

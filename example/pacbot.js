@@ -1,40 +1,35 @@
-exports.config = {
+/*
+ * This is an example of a config file.
+ *
+ * Run "pacbot -d" in this folder to view the example
+ * site in dev mode in your browser, or build an
+ * uploadable dir by running "pacbot -b".
+ */
+exports.config = function() {
 
-    layouts: {
-        'page2.html': '_layouts/other.html'
-    },
+    // Create a new config object.
+    var config = {
+        port: 1234,
+        assets: {}
+    };
 
-    assets: {
+    // Assets are specified by type, in groups,
+    // and can be arrays of files or folders.
+    // The assets are included in the layout file.
+    config.assets.css = {
+        all: [
+            'assets/css/reset.css',
+            'assets/css/base.css',
+        ]
+    };
 
-        js: {
-            group1: [
-            'js/a.js',
-            'js/b.js',
-            'js/template.js'
-            ]
-        },
+    // Asset groups can also be just folders or a file.
+    // or just a single file, if the order is arbitrary.
+    config.assets.js = {
+        all: 'assets/js'
+    };
 
-        css: {
-            group2: [
-            'css/1.css',
-            'css/2.css'
-            ]
-        },
-
-        tmpl: {
-            group3: [
-            'templates/1.tmpl'
-            ]
-        }
-
-    },
-
-    helpers: {
-
-        hello: function () {
-            return 'hello!';
-        }
-
-    }
+    // Return the config object.
+    return config;
 
 };
