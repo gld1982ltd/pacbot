@@ -5,8 +5,8 @@ var _ = require('underscore')._,
     pacbot = require('../lib/pacbot');
 
 /*
-* Parse command line flags.
-*/
+ * Parse command line flags.
+ */
 program
     .version(pacbot.version)
     .option('')
@@ -23,22 +23,22 @@ program
     .parse(process.argv);
 
 /*
-* If no options are given, show the help prompt.
-*/
+ * If no options are given, show the help prompt.
+ */
 if (!program.dev && !program.build && !program.sync) {
     program.help();
 }
 
 /*
-* Override config with command line flags.
-*/
+ * Override config with command line flags.
+ */
 var config = pacbot.config(_.extend({ silent: false }, _.pick(program, [
     'dev', 'build', 'sync', 'port', 'config', 'source', 'target', 'remote', 'silent'
 ])));
 
 /*
-* Decide what to do.
-*/
+ * Decide what to do.
+ */
 if (config.build) pacbot.build();
 if (config.sync)  pacbot.sync();
 if (config.dev)   pacbot.dev();
