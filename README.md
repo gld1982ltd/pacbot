@@ -94,10 +94,10 @@ You may also use pacbot programmatically:
 var pacbot = require("pacbot");
 
 // Set config flags
-pacbot.config({
-  source: "relative/source/folder/name",
-  target: "relative/target/folder/name",
-  remote: "foo@example.com:/path/to/document/root/"
+pacbot.init({
+    source: "relative/source/folder/name",
+    target: "relative/target/folder/name",
+    remote: "foo@example.com:/path/to/document/root/"
 });
 
 // Start dev mode
@@ -160,10 +160,12 @@ You can use different layouts for different files. This is specified
 in your `pacbot.js` file (explained at the end of this readme):
 
 ```js
-exports.config = {
-  layouts: {
-    "mypage.html": "_layouts/other.html"
-  }
+exports.config = function() {
+    return {
+        layouts: {
+            'mypage.html': '_layouts/other.html'
+        }
+    };
 };
 ```
 
@@ -196,31 +198,42 @@ To include your assets, use the `assets` helper, quite possibly in your layout f
 
 Pacbot will look for a `pacbot.js` file in the directory in which it is run.
 You can override where to look for the config with the `-c` command line flag.
-The config is a valid node.js module. Here is an example:
+The config is a valid node.js module with one function that returns your config. 
+Here is an example:
 
 ```js
-exports.config = {
-
-  assets: {
-    css: {
-      group1: [
-        "css/1.css",
-        "css/2.css"
-      ]
-    },
-    js: {
-      group2: [
-        "js/a.js",
-        "js/b.js"
-      ]
-    },
-  },
-
-  helpers: {
-    hello: function () {
-      return "hello!";
-    }
-  }
+exports.config = function(pacbot) {
+    
+    // Create a new config object.
+    var config = {
+        assets: {}
+    };
+        
+    // Groups of css files (or folders).
+    config.assets.css = {
+        group1: ['css/1.css', 'css/2.css']
+    };
+    
+    // Groups of js files (or folders).
+    config.assets.js = {
+        group2: ['js/a.js', 'js/b.js']
+    };
+    
+    // Custom HTML helpers.
+    config.helpers = {
+        hello: function() {
+            return 'hello!';
+        }
+    };
+    
+    // Custom filters for filetypes.
+    pacbot.filter.set('target', 'html', function(path) {
+        // Strip file extension from HTML files.
+        return path.replace(/\.html$/, '');
+    });
+    
+    // Return the config object.
+    return config;
 
 };
 ```
@@ -244,9 +257,7 @@ The assets can be referenced in an HTML file like this:
 <%= hello() %>
 ```
 
-There are many other config flags you may override. For now,
-see the file `lib/config.js` for all these flags.
-
----
-
-License: MIT (see LICENSE).
+There are many other config flags you may override. 
+See the file `lib/config.js` for all config flags.
+See how you can write filters for different file types 
+in the `filters/` folder.
