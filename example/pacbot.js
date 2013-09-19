@@ -24,7 +24,7 @@ exports.config = function() {
     };
 
     // Asset groups can also be just folders or a file.
-    // or just a single file, if the order is arbitrary.
+    // Use folders if the inclusion order is arbitrary.
     config.assets.js = {
         all: 'assets/js'
     };
