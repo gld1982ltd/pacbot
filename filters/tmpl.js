@@ -31,7 +31,8 @@ filter.set('compile', 'tmpl', function (file) {
 /*
  * Minify.
  */
-filter.set('pack', 'tmpl', function (files) {
+filter.set('pack', 'tmpl', function (files, callback) {
     var content = _.map(files, filter.get('compile', 'tmpl')).join("");
-    return uglifyJS.minify(content, { fromString: true }).code;
+    var minified = uglifyJS.minify(content, { fromString: true }).code;
+    callback(minified);
 });

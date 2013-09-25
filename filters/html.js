@@ -36,7 +36,6 @@ var compile = function (f, data, context) {
         return _.template(data)(context);
     } catch(e) {
         log('error', 'could not parse template file', f);
-        log('error', 'original error:');
         throw(e);
     }
 };
@@ -114,24 +113,21 @@ filter.set('mime', 'html', function () {
 /*
  * Compile.
  */
-filter.set('compile', 'html', function (f, data, locals) {
+filter.set('compile', 'html', function (file, data, locals, callback) {
     var partial = locals.templateType === 'partial';
-    var ignored = !config.needsProcessing(f);
+    var ignored = !config.needsProcessing(file);
     var tagged  = data.indexOf('<%') !== -1;
 
     if (!partial) {
         reset();
     }
-
     if (!ignored && tagged) {
-        data = compile(f, data, templateData(locals));
+        data = compile(file, data, templateData(locals));
     }
-
     if (partial || ignored) {
         return data;
     } else {
-        return processLayout(f, data);
+        return processLayout(file, data);
     }
-
     return result;
 });

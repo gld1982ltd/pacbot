@@ -1,23 +1,30 @@
+@bg1: #f9f9f9;
+@bg2: #eee;
+@bg3: #fff;
+@border1: #f1f1f1;
+@color1: #111;
+@color2: #999;
+
 body {
     padding: 5%;
     line-height: 1.5;
     font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-    background: #f9f9f9;
-    color: #111;
+    background: @bg1;
+    color: @color1;
 }
 
 main {
     max-width: 42em;
     margin: 0 auto;
-    background: #fff;
+    background: @bg3;
     padding: 5em 5em 3em 5em;
 }
 
 pre {
     font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
     margin: 2em -5em;
-    border-top: .1em solid #f1f1f1;
-    border-bottom: .1em solid #f1f1f1;
+    border-top: .1em solid @border1;
+    border-bottom: .1em solid @border1;
     padding: 2em 5em;
     line-height: 1.2;
     overflow: auto;
@@ -41,6 +48,6 @@ h2, h3, h4, h5 {
 .example {
     padding: 3em 5em;
     margin: -5em -5em 4em -5em;
-    background: #eee;
-    color: #999;
+    background: @bg2;
+    color: @color2;
 }

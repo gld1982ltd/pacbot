@@ -16,10 +16,10 @@ exports.config = function() {
     // Assets are specified by type, in groups,
     // and can be arrays of files or folders.
     // The assets are included in the layout file.
-    config.assets.css = {
+    config.assets.less = {
         all: [
-            'assets/css/reset.css',
-            'assets/css/base.css',
+            'assets/css/reset.less',
+            'assets/css/base.less'
         ]
     };
 

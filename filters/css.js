@@ -20,6 +20,8 @@ filter.set('tag', 'css', function (path) {
 /*
  * Minify.
  */
-filter.set('pack', 'css', function (files) {
-    return cleanCSS.process(fss.readAllFiles(files));
+filter.set('pack', 'css', function (files, callback) {
+    var content = fss.readAllFiles(files);
+    var minified = cleanCSS.process(content);
+    callback(minified);
 });

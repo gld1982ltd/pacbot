@@ -13,7 +13,7 @@ filter.set('mime', 'md', function () {
 /*
  * Compile.
  */
-filter.set('compile', 'md', function (file) {
+filter.set('compile', 'md', function (file, data, locals, callback) {
     if (config.marked) marked.setOptions(config.marked);
     return marked(fss.readFile(file));
 });

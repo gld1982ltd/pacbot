@@ -20,6 +20,8 @@ filter.set('tag', 'js', function (path) {
 /*
  * Minify.
  */
-filter.set('pack', 'js', function (files) {
-    return uglifyJS.minify(fss.readAllFiles(files), { fromString: true }).code;
+filter.set('pack', 'js', function (files, callback) {
+    var content = fss.readAllFiles(files);
+    var minified = uglifyJS.minify(content, { fromString: true }).code;
+    callback(minified);
 });
