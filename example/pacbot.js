@@ -29,6 +29,12 @@ exports.config = function() {
         all: 'assets/js'
     };
 
+    // You can also precompile templates, for example
+    // using Underscore's _.template function.
+    config.assets.tmpl = {
+        all: 'assets/templates'
+    };
+
     // Return the config object.
     return config;
 
