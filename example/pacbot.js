@@ -10,7 +10,6 @@ exports.config = function() {
     // Create a new config object.
     var config = {
         port: 1234,
-        preserveComments: /^!|@preserve|@license|@cc_on/i,
         assets: {}
     };
 
@@ -34,6 +33,11 @@ exports.config = function() {
     // using Underscore's _.template function.
     config.assets.tmpl = {
         all: 'assets/templates'
+    };
+
+    // Add some options for UglifyJS.
+    config.uglifyjs = {
+        output: { comments: /^!|@preserve|@license|@cc_on/i }
     };
 
     // Return the config object.

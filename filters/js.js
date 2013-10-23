@@ -1,5 +1,4 @@
-var _ = require('underscore'),
-    uglifyJS = require('uglify-js'),
+var uglifyJS = require('uglify-js'),
     fss = require('../lib/fss'),
     config = require('../lib/config'),
     filter = require('../lib/filter');
@@ -23,6 +22,8 @@ filter.set('tag', 'js', function (path) {
  */
 filter.set('pack', 'js', function (files, callback) {
     var content = fss.readAllFiles(files);
-    var minified = uglifyJS.minify(content, { fromString: true, output: { comments: config.preserveComments }}).code;
+    var options = config.uglifyjs || {};
+    options.fromString = true;
+    var minified = uglifyJS.minify(content, options).code;
     callback(minified);
 });
