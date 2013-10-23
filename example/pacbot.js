@@ -35,6 +35,11 @@ exports.config = function() {
         all: 'assets/templates'
     };
 
+    // Add some options for UglifyJS.
+    config.uglifyjs = {
+        output: { comments: /^!|@preserve|@license|@cc_on/i }
+    };
+
     // Return the config object.
     return config;
 
