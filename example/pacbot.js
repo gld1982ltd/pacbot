@@ -10,6 +10,7 @@ exports.config = function() {
     // Create a new config object.
     var config = {
         port: 1234,
+        preserveComments: /^!|@preserve|@license|@cc_on/i,
         assets: {}
     };
 
