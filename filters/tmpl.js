@@ -1,6 +1,7 @@
 var _ = require('underscore'),
     uglifyJS = require('uglify-js'),
     fss = require('../lib/fss'),
+    log = require('../lib/log')
     filter = require('../lib/filter');
 
 /*
@@ -23,7 +24,11 @@ filter.set('tag', 'tmpl', function (path) {
 filter.set('compile', 'tmpl', function (file) {
     var pre = 'window.templates = window.templates || {}; ';
     var ns  = 'window.templates["' + fss.relative(file) + '"] = ';
-    var src = _.template(fss.readFile(file)).source;
+    try {
+        var src = _.template(fss.readFile(file)).source;
+    } catch(e) {
+        throw('Compilation error in: ' + file);
+    }
     var res = pre + ns + src + ';';
     return res;
 });
