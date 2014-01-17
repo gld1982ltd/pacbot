@@ -35,6 +35,12 @@ exports.config = function() {
         all: 'assets/templates'
     };
 
+    // You can also generate appcache manifests, just
+    // remember to reference the file from your <html> tag.
+    config.assets.cache = {
+        'cache.appcache': 'assets/packed'
+    };
+
     // Add some options for UglifyJS.
     config.uglifyjs = {
         output: { comments: /^!|@preserve|@license|@cc_on/i }

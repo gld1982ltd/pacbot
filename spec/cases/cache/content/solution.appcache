@@ -1,0 +1,17 @@
+CACHE MANIFEST
+# Time: Tue Oct 29 2013 12:28:15 GMT+0100 (CET)
+
+CACHE:
+/css/1.css
+/img/a/2.png
+/img/a/3.png
+/img/b/4.png
+/img/1.png
+
+NETWORK:
+*
+http://*
+https://*
+
+SETTINGS:
+prefer-online
