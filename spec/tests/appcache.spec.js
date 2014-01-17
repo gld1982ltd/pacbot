@@ -17,13 +17,13 @@ exports.setUp = function (callback) {
 exports.canCreateAppCacheFile = function (test) {
     pacbot.build(function () {
         var content = fss.readFile('spec/out/cache/cache.appcache');
-        contains(test, content, 'CACHE MANIFEST');
-        contains(test, content, 'prefer-online');
-        contains(test, content, '/img/1.png#');
-        contains(test, content, '/img/a/2.png#');
-        contains(test, content, '/img/a/3.png#');
-        contains(test, content, '/img/b/4.png#');
-        contains(test, content, '/css/1.css#');
+        contains(test, content, 'CACHE MANIFEST\n');
+        contains(test, content, '\nprefer-online');
+        contains(test, content, '\nimg/1.png#');
+        contains(test, content, '\nimg/a/2.png#');
+        contains(test, content, '\nimg/a/3.png#');
+        contains(test, content, '\nimg/b/4.png#');
+        contains(test, content, '\ncss/1.css#');
         test.done();
     });
 };
