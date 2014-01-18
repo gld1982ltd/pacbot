@@ -31,9 +31,9 @@ exports.canHonorRootAndTimestamp = function (test) {
     pacbot.build(function () {
         var content = fss.readFile('spec/out/cache/cache.appcache');
         contains(test, content, 'CACHE MANIFEST\n# Time: ');
-        contains(test, content, '\nfoo/bar/img/1.png#v=');
-        contains(test, content, '\nfoo/bar/img/a/2.png#v=');
-        contains(test, content, '\nfoo/bar/css/1.css#v=');
+        contains(test, content, '\nfoo/bar/img/1.png?v=');
+        contains(test, content, '\nfoo/bar/img/a/2.png?v=');
+        contains(test, content, '\nfoo/bar/css/1.css?v=');
         test.done();
     });
 };
