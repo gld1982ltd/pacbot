@@ -21,7 +21,8 @@ exports.setUp = function (callback) {
         packed: 'assets',
         config: 'spec/cases/assets/assets1.js',
         layout: false,
-        ignore_processing: []
+        ignore_processing: [],
+        root: '/'
     });
     fss.resetDir(config.pubdir);
     callback();
