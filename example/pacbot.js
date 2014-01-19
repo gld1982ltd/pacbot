@@ -38,7 +38,10 @@ exports.config = function() {
     // You can also generate appcache manifests, just
     // remember to reference the file from your <html> tag.
     config.assets.cache = {
-        'cache.appcache': 'assets/packed'
+        'cache.appcache': [
+            'assets/packed',
+            'assets/images'
+        ]
     };
 
     // Add some options for UglifyJS.
