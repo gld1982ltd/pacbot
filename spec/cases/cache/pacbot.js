@@ -9,7 +9,8 @@ exports.config = function(pacbot) {
             'css/1.css',
             'img/a',
             'img',
-            '/html/'
+            '/html/',
+            'js/'
         ]
     };
 

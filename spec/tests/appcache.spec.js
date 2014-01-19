@@ -35,6 +35,7 @@ exports.canHonorRootAndTimestamp = function (test) {
         contains(test, content, '\nfoo/bar/img/a/2.png\n');
         contains(test, content, '\nfoo/bar/html/cached.html\n');
         contains(test, content, '\nfoo/bar/css/1.css?v=');
+        contains(test, content, '\nfoo/bar/js/a.js?v=');
         test.done();
     });
 };
