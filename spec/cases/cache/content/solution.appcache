@@ -6,6 +6,7 @@ CACHE:
 /img/a/3.png
 /img/1.png
 /img/b/4.png
+/html/cached.html
 
 NETWORK:
 *

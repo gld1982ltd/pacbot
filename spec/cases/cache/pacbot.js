@@ -8,7 +8,8 @@ exports.config = function(pacbot) {
         'cache.appcache': [
             'css/1.css',
             'img/a',
-            'img'
+            'img',
+            '/html/'
         ]
     };
 
