@@ -9,7 +9,7 @@ exports.canIngoreUnprocessableFiles = function (test) {
     fss.resetDir(config.pubdir);
     test.ok( fss.isProcessableFile('spec/cases/filetypes/_a'), '_a');
     test.ok( fss.isProcessableFile('spec/cases/filetypes/a'),  'a');
-    test.ok(!fss.isProcessableFile('spec/cases/filetypes/.a'), '.a');
+    test.ok( fss.isProcessableFile('spec/cases/filetypes/.a'), '.a');
     test.ok(!fss.isProcessableFile('spec/cases/filetypes'),    'dir');
     test.done();
 };

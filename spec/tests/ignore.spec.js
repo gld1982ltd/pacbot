@@ -41,6 +41,19 @@ exports.canIgnoreFilesInBuild = function (test) {
     });
 };
 
+exports.canCopyDotFiles = function (test) {
+    pacbot.config({
+        dev: false,
+        build: true
+    });
+    pacbot.build(function() {
+        test.ok( fss.exists('spec/out/html/.foo.html'));
+        test.ok( fss.exists('spec/out/html/.htaccess'));
+        test.ok(!fss.exists('spec/out/html/.DS_Store'));
+        test.done();
+    });
+};
+
 exports.canIgnoreNothing = function (test) {
     pacbot.config({
         dev: false,
