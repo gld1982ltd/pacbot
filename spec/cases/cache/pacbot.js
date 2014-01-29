@@ -6,8 +6,9 @@ exports.config = function(pacbot) {
 
     config.assets.cache = {
         'cache.appcache': [
-            'css/1.css',
+            'css',
             'img/a',
+            'img/1.png',
             'img',
             '/html/',
             'js/'
