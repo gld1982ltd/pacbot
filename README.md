@@ -261,3 +261,7 @@ There are many other config flags you may override.
 See the file `lib/config.js` for all config flags.
 See how you can write filters for different file types 
 in the `filters/` folder.
+
+## License
+
+MIT. See LICENSE.
